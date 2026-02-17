@@ -48,21 +48,44 @@
  *   removeLastItem(["tamatar", "pyaaz", "mirchi"])   // => "mirchi"
  */
 export function addToCart(cart, item) {
-  // Your code here
+  if (!Array.isArray(cart)) {
+    return -1;
+  }
+  if (typeof item !== "string" || item.trim().length === 0) {
+    return cart.length;
+  }
+  const arr = cart.push(item)
+  return arr
 }
 
 export function addUrgentItem(cart, item) {
-  // Your code here
+  if (!Array.isArray(cart)) {
+    return [];
+  }
+  if (typeof item !== "string" || item.trim().length === 0) {
+    return cart;
+  }
+  cart.unshift(item)
+  return cart
 }
 
 export function removeLastItem(cart) {
-  // Your code here
+  if (!Array.isArray(cart)) {
+    return undefined
+  }
+  return cart.pop()
 }
 
 export function isInCart(cart, item) {
-  // Your code here
+  if (!Array.isArray(cart) || cart.length === 0) {
+    return false
+  }
+  return cart.includes(item)
 }
 
 export function mergeCarts(cart1, cart2) {
-  // Your code here
+  const safeCart1 = Array.isArray(cart1) ? cart1 : [];
+  const safeCart2 = Array.isArray(cart2) ? cart2 : [];
+
+  return safeCart1.concat(safeCart2);
 }
